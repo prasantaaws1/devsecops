@@ -1,5 +1,5 @@
-vars
-| --- functions.groovy
+// vars
+// | --- functions.groovy
 
 def call(String repoUrl){
   pipeline {
