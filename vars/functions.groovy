@@ -26,17 +26,23 @@ def call(String repoUrl){
                    sh "mvn clean"
                }
            }
-           stage("Running Testcase") {
+           // stage("Running Testcase") {
+           //    steps {
+           //         sh "mvn test"
+           //     }
+           //   post{
+           //     always{
+           //       junit 'target/surefire-reports/*.xml'
+           //       jacoco execPattern: 'target/jacoco.exec'
+           //     }
+           //   }
+           // }
+ stage("Running Testcase") {
               steps {
-                   sh "mvn test"
+                   sh "mvn -B -e org.jacoco:jacoco-maven-plugin:0.7.4:prepare-agent clean install -Dmaven.wagon.http.ssl.insecure=true"
                }
-             post{
-               always{
-                 junit 'target/surefire-reports/*.xml'
-                 jacoco execPattern: 'target/jacoc.exec'
-               }
-             }
            }
+         
            stage("Packing Application") {
                steps {
                    sh "mvn package -DskipTests"
