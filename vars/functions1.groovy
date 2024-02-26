@@ -57,7 +57,8 @@ def call(String repoUrl){
            }
          stage('SonarQube') {
             steps {
-              sh "mvn -B org.sonarsource.scanner.maven:sonar-maven-plugin:3.3.0.603:sonar "
+              sh "mvn -B -f pom.xml "
+              // org.sonarsource.scanner.maven:sonar-maven-plugin:3.3.0.603:sonar "
             }
         }
        }
