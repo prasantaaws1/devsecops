@@ -11,7 +11,7 @@ pipeline {
         }
     stage('Build Artifact') {
             steps {
-              build-artifacts()
+              buildArtifacts()
             }
         }
     stage('SonarQube') {
