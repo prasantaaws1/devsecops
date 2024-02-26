@@ -30,6 +30,12 @@ def call(String repoUrl){
               steps {
                    sh "mvn test"
                }
+             post{
+               always{
+                 junit 'target/surefire-reports/*.xml'
+                 jacoco execPattern: 'target/jacoc.exec'
+               }
+             }
            }
            stage("Packing Application") {
                steps {
