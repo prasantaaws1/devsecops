@@ -39,7 +39,7 @@ def call(String repoUrl){
            // }
  stage("Running Testcase") {
               steps {
-                   sh "mvn -B -e org.jacoco:jacoco-maven-plugin:0.8.5:prepare-agent clean install -Dmaven.wagon.http.ssl.insecure=true"
+                   sh "mvn -B -e org.jacoco:jacoco-maven-plugin:0.8.5:prepare-agent clean install -Dmaven.wagon.http.ssl.insecure=true -f "
                }
            }
          
