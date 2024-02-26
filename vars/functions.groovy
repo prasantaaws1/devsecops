@@ -44,7 +44,7 @@ def call(String repoUrl){
            }
          stage('SonarQube') {
             steps {
-              sh "mvn clean verify sonar:sonar \
+              sh "mvn sonar:sonar \
                   -Dsonar.projectKey=demo \
                   -Dsonar.projectName='demo' \
                   -Dsonar.host.url=http://3.101.147.129:9000 \
