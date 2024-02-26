@@ -15,10 +15,15 @@ def call(String repoUrl){
                    sh "java -version"
                }
            }
-           stage("Checkout Code") {
+           // stage("Checkout Code") {
+           //     steps {
+           //         git branch: 'main',
+           //             url: "${repoUrl}"
+           //     }
+           // }
+         stage("Clone Repo") {
                steps {
-                   git branch: 'main',
-                       url: "${repoUrl}"
+                   checkout changelog: false, poll: false, scm: [ $class: 'GitSCM', branches: [[ name: 'main' ]], extensions: [[ $class: 'CloneOption', shallow: true, depth: 1, timeout: 10, noTags: true ]], userRemoteConfigs: [[ url: ${repoUrl} ]] ]
                }
            }
            stage("Cleaning workspace") {
