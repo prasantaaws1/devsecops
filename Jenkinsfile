@@ -1,7 +1,14 @@
+@Library("My_Shared_Library") _
+
 pipeline {
   agent any
 
   stages {
+    stage('From Shared Library') {
+            steps {
+              hello()
+            }
+        }
       stage('Build Artifact') {
             steps {
               sh "mvn clean package -DskipTests=true"
