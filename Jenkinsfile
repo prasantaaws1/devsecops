@@ -11,7 +11,9 @@ pipeline {
         }
     stage('Build Artifact') {
             steps {
+              script{
               buildArtifacts()
+              }
             }
         }
     stage('SonarQube') {
