@@ -9,13 +9,13 @@ pipeline {
               hello()
             }
         }
-    // stage('Build Artifact') {
-    //         steps {
-    //           script{
-    //           buildArtifacts()
-    //           }
-    //         }
-    //     }
+    stage('Build Artifact') {
+            steps {
+              script{
+              buildArtifacts()
+              }
+            }
+        }
     stage('SonarQube') {
             steps {
               sh "mvn clean verify sonar:sonar \
