@@ -17,7 +17,7 @@ def call(String repoUrl){
                    sh "java -version"
                }
            }
-           stage("Checkout Code") {
+           stage("Clone Repository") {
                steps {
                    git branch: 'main',
                        url: "${repoUrl}"
@@ -28,17 +28,7 @@ def call(String repoUrl){
                    sh "mvn clean"
                }
            }
-           // stage("Running Testcase") {
-           //    steps {
-           //         sh "mvn test"
-           //     }
-           //   post{
-           //     always{
-           //       junit 'target/surefire-reports/*.xml'
-           //       jacoco execPattern: 'target/jacoco.exec'
-           //     }
-           //   }
-           // }
+           
            stage("Maven Install") {
               steps {
                    sh '''mvn -B -e org.jacoco:jacoco-maven-plugin:0.8.5:prepare-agent clean install -Dmaven.wagon.http.ssl.insecure=true -f pom.xml -Dmaven.test.skip='true' \
