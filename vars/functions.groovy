@@ -1,10 +1,15 @@
 def call(String repoUrl){
   pipeline {
        agent any
-        tools {
-            maven 'Maven 3.6.3'
-            jdk 'OpenJDK11'
-        }
+        // tools {
+        //     maven 'Maven 3.6.3'
+        //     jdk 'OpenJDK11'
+        // }
+
+      environment{
+        SONAR_USER_HOME="\${WORKSPACE}/.sonar"
+        
+      }
        stages {
            stage("Tools initialization") {
                steps {
