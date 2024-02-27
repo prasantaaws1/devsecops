@@ -1,5 +1,5 @@
 @Library("my-shared-library") _
-functions 'https://github.com/prasantaaws1/devsecops.git'
+sampleCode 'https://github.com/prasantaaws1/devsecops.git'
 
 // pipeline {
 //   agent any
