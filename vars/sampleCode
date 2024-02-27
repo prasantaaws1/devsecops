@@ -1,10 +1,15 @@
 def call(String repoUrl){
   pipeline {
        agent any
-       //tools {
-         //   maven 'Maven 3.6.3'
-           // jdk 'OpenJDK11'
-        //}
+        // tools {
+        //     maven 'Maven 3.6.3'
+        //     jdk 'OpenJDK11'
+        // }
+
+      environment{
+        SONAR_USER_HOME="\${WORKSPACE}/.sonar"
+        
+      }
        stages {
            stage("Tools initialization") {
                steps {
@@ -12,29 +17,17 @@ def call(String repoUrl){
                    sh "java -version"
                }
            }
-           stage("Checkout Code") {
+           stage("Clone Repository") {
                steps {
                    git branch: 'main',
                        url: "${repoUrl}"
                }
            }
-            stage("Cleaning workspace") {
+           stage("Cleaning workspace") {
                steps {
                    sh "mvn clean"
                }
            }
-           
-           // stage("Running Testcase") {
-           //    steps {
-           //         sh "mvn test"
-           //     }
-           //   post{
-           //     always{
-           //       junit 'target/surefire-reports/*.xml'
-           //       jacoco execPattern: 'target/jacoco.exec'
-           //     }
-           //   }
-           // }
            
            stage("Maven Install") {
               steps {
