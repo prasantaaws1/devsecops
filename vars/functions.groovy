@@ -1,6 +1,3 @@
-// vars
-// | --- functions.groovy
-
 def call(String repoUrl){
   pipeline {
        agent any
@@ -37,7 +34,7 @@ def call(String repoUrl){
            //     }
            //   }
            // }
- stage("Maven Install") {
+           stage("Maven Install") {
               steps {
                    sh '''mvn -B -e org.jacoco:jacoco-maven-plugin:0.8.5:prepare-agent clean install -Dmaven.wagon.http.ssl.insecure=true -f pom.xml -Dmaven.test.skip='true' \
                     -DjvmArgs="-Xmx1G -XX:PermSize=128m -XX:MaxPermSize=256m" '''
@@ -61,10 +58,10 @@ def call(String repoUrl){
               curl -k -o /tmp/sample.txt https://reqbin.com/echo
               chmod 777 /tmp/sample.txt  
               mvn clean verify sonar:sonar \
-  -Dsonar.projectKey=demo \
-  -Dsonar.projectName='demo' \
-  -Dsonar.host.url=http://54.219.167.251:9000 \
-  -Dsonar.token=sqp_d4a203a12b9a2d2e3ec5731b4be5887beae4e1ec
+                -Dsonar.projectKey=demo \
+                -Dsonar.projectName='demo' \
+                -Dsonar.host.url=http://54.219.167.251:9000 \
+                -Dsonar.token=sqp_d4a203a12b9a2d2e3ec5731b4be5887beae4e1ec
               '''
             }
         }
